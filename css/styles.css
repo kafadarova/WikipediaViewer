@@ -43,18 +43,22 @@ text-align: center;
 }
 
 #search{
-  max-width: 484px;
+width: 400px;
 
 }
 
 #buttons{
-  padding-top: 18px;
+  padding: 18px;
 
+}
+
+#result{
+margin-right: 15px;
 }
 
 footer {
   text-align: center;
-  margin: auto;
+  margin:100px auto;
   width: 50%;
 }
 a:visited
