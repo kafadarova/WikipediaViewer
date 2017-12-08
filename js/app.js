@@ -8,7 +8,7 @@ return url;
 }
 
 // AJAX call
-$(document).ready(function(){
+$( document ).ready(function() {
 	$("#search").click(function(e){
     e.preventDefault();
    var searchTerm = $("#search").val();
@@ -18,14 +18,12 @@ $(document).ready(function(){
       url:  url,
       dataType: 'jsonp',
       success: function(data) {
+        console.log(data);
       var result = data.query.pages;
       for (var num in result) {
              $("ul").append('<a target="_blank" href="https://en.wikipedia.org/wiki?curid=' + result[num].pageid + '">' + '<li><h3 class="title ">' + result[num].title + '</h3><p class="text">' + result[num].extract + '</p></li></a>');
            }
-         }
-       });
-     });
-   });
-    })
+      }
+    });
   });
 });
