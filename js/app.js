@@ -2,26 +2,31 @@
 var pages = $('.wrap');
 
 
-$( document ).ready(function() {
-	$("#result").click(function(e){
+$(document).ready(function() {
+  $("#result").click(function(e) {
     e.preventDefault();
     // value entered by the user
-   var searchTerm = $("#search").val();
-   console.log(searchTerm);
-   // url to look for using the search input by the user
-   var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ searchTerm + "&format=json&callback=?";
+    var searchTerm = $("#search").val();
+    console.log(searchTerm);
+    // url to look for using the search input by the user
+    var url = "https://en.wikipedia.org/w/api.php";
 
-// AJAX call
+    // AJAX call
     $.ajax({
-      type:'GET',
-      url:  url,
-      async:true,
-      data: { action: 'query', list: 'search', srsearch: searchTerm, format: 'json' },
+      type: 'GET',
+      url: url,
+      async: true,
+      data: {
+        action: 'query',
+        list: 'search',
+        srsearch: searchTerm,
+        format: 'json'
+      },
       dataType: "jsonp",
       success: function(data) {
         console.log(data);
-        var html  = '  <!-- pages -->';
-            html += '  <div class="row row-centered">';
+        var html = '  <!-- pages -->';
+        html += '  <div class="row row-centered">';
 
         data.query.search.map(function(w) {
           html += '    <div class="col-centered">';
@@ -38,13 +43,16 @@ $( document ).ready(function() {
           html += '    </div>';
         });
 
-    html += '  </div>';
+        html += '  </div>';
 
- // changing the content after the result - displaying all possible result pages
+        // changing the content after the result - displaying all possible result pages
         pages.html(html);
+      },
+      error: function() {
+        alert("Error retrieving search results, please refresh the page");
       }
-     });
-     });
+    });
+  });
 });
 
 // $(".searchbox").autocomplete({
